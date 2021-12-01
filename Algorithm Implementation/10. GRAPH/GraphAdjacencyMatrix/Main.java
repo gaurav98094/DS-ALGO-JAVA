@@ -23,5 +23,8 @@ public class Main{
 
         System.out.println("AGJASCENCY GRAPH");
         g.printGRAPH();
+
+
+        g.BFS();
     }
 }

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class GRAPH{
     ArrayList<GraphNode> nodeList = new ArrayList<GraphNode>();
@@ -13,6 +13,37 @@ public class GRAPH{
     public void addUndirectedEdge(int v1, int v2){
         adjacencyMatrix[v1][v2]=1;
         adjacencyMatrix[v2][v1]=1;
+    }
+
+
+    public void BFS_helper(GraphNode sv, Boolean isVisited[]){
+        Queue<GraphNode> queue = new LinkedList<GraphNode>();
+
+        queue.add(sv);
+        isVisited[sv.index]=true;
+
+        while(queue.size()!=0){
+            GraphNode qq = queue.remove();
+            System.out.print(qq.name+" ");
+
+            for(int i=0;i<nodeList.size();i++){
+                if(adjacencyMatrix[sv.index][i]==1 && isVisited[i]==false){
+                    queue.add(nodeList.get(i));
+                }
+            }
+        }
+        
+    }
+
+    public void BFS(){
+        Boolean isVisited[] = new Boolean[nodeList.size()];
+        Arrays.fill(isVisited, Boolean.FALSE);
+
+        for(GraphNode node:nodeList){
+            BFS_helper(node,isVisited);
+        }
+
+
     }
 
 
